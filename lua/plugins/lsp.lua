@@ -86,6 +86,8 @@ return {
 				"ansible-lint",
 				"yamllint",
 				"typescript-language-server",
+				"tailwindcss-language-server",
+				"css-lsp",
 				"js-debug-adapter",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

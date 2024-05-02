@@ -44,17 +44,24 @@ return {
 		end,
 	},
 	{
-		'windwp/nvim-autopairs',
-		event = "InsertEnter",
-		config = true
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		opts = {
 			options = {
 				theme = "catppuccin-mocha",
 			},
+		},
+	},
+	{
+		{
+			"ThePrimeagen/refactoring.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+				"nvim-treesitter/nvim-treesitter",
+			},
+			config = function()
+				require("refactoring").setup()
+			end,
 		},
 	},
 	icons = {
