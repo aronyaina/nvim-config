@@ -4,6 +4,10 @@ return {
     lazy = false,
   },
   {
+    'numToStr/Comment.nvim',
+    lazy = false,
+  },
+  {
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -45,7 +49,7 @@ return {
     },
     opts = {
       options = {
-        theme = "catppuccin-mocha",
+        theme = "ayu_mirage",
       },
     },
   },
