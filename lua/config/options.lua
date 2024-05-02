@@ -1,6 +1,8 @@
 vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.format()]]
 
 vim.cmd [[autocmd BufRead *.yaml,*.yml if search('hosts:\|tasks:\|name:', 'nw') | set ft=yaml.ansible | endif]]
+vim.cmd [[autocmd BufRead docker-compose.* set ft=yaml.docker-compose]]
+vim.cmd [[autocmd BufRead dockerfile.* set ft=dockerfile]]
 
 local opt = vim.opt
 
