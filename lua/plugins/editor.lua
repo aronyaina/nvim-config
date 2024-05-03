@@ -1,10 +1,25 @@
 return {
+  -- lazy.nvim
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {},
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+    }
+  },
+  {
+    'stevearc/dressing.nvim',
+    opts = {},
+  },
   {
     "christoomey/vim-tmux-navigator",
     lazy = false,
   },
   {
     'numToStr/Comment.nvim',
+    opts = {},
     lazy = false,
   },
   {
