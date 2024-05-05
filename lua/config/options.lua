@@ -33,6 +33,7 @@ opt.softtabstop = 2
 vim.opt.path:append({ "**" })
 vim.opt.wildignore:append({ "*/node_modules/*" })
 vim.opt.shell = "zsh"
+vim.opt.clipboard:append('unnamedplus')
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",

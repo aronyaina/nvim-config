@@ -1,6 +1,9 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
+  opts = {
+
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -21,9 +24,9 @@ return {
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
-      neo_tree_popup_input_ready = false,                                -- Enable normal mode for input dialogs.
-      open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
-      sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
+      neo_tree_popup_input_ready = false,
+      open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
+      sort_case_insensitive = false,
       sort_function = nil,
       default_component_configs = {
         container = {
@@ -36,8 +39,7 @@ return {
           indent_marker = "│",
           last_indent_marker = "└",
           highlight = "NeoTreeIndentMarker",
-          -- expander config, needed for nesting files
-          with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
+          with_expanders = nil,
           expander_collapsed = "",
           expander_expanded = "",
           expander_highlight = "NeoTreeExpander",
@@ -46,8 +48,6 @@ return {
           folder_closed = "",
           folder_open = "",
           folder_empty = "󰜌",
-          -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
-          -- then these will never be used.
           default = "*",
           highlight = "NeoTreeFileIcon"
         },
@@ -63,19 +63,18 @@ return {
         git_status = {
           symbols = {
             -- Change type
-            added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-            modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+            added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
+            modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
             deleted   = "✖", -- this can only be used in the git_status source
             renamed   = "󰁕", -- this can only be used in the git_status source
             -- Status type
             untracked = "",
             ignored   = "",
-            unstaged  = "󰄱",
+            unstaged  = "",
             staged    = "",
             conflict  = "",
           }
         },
-        -- If you don't want to use these columns, you can set `enabled = false` for each of them individually
         file_size = {
           enabled = true,
           required_width = 64, -- min width of window required to show this column
@@ -96,9 +95,6 @@ return {
           enabled = false,
         },
       },
-      -- A list of functions, each representing a global custom command
-      -- that will be available in all sources (if not overridden in `opts[source_name].commands`)
-      -- see `:h neo-tree-custom-commands-global`
       commands = {},
       window = {
         position = "left",
@@ -164,41 +160,34 @@ return {
       nesting_rules = {},
       filesystem = {
         filtered_items = {
-          visible = false, -- when true, they will just be displayed differently than normal items
-          hide_dotfiles = true,
+          visible = true,
+          hide_dotfiles = false,
           hide_gitignored = true,
-          hide_hidden = true, -- only works on Windows for hidden files/directories
-          hide_by_name = {
-            --"node_modules"
+          hide_hidden = true,
+          hide_by_pattern = {
+            "*.meta",
+            "*/src/*/tsconfig.json",
           },
-          hide_by_pattern = { -- uses glob style patterns
-            --"*.meta",
-            --"*/src/*/tsconfig.json",
+          always_show = {
+            ".gitignored",
           },
-          always_show = { -- remains visible even if other settings would normally hide it
-            --".gitignored",
+          never_show = {
+            ".DS_Store",
+            "thumbs.db",
+            ".git",
+            "node_modules"
           },
-          never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
-            --".DS_Store",
-            --"thumbs.db"
-          },
-          never_show_by_pattern = { -- uses glob style patterns
-            --".null-ls_*",
+          never_show_by_pattern = {
+            ".null-ls_*",
           },
         },
         follow_current_file = {
-          enabled = false,                      -- This will find and focus the file in the active buffer every time
-          --               -- the current file is changed while the tree is open.
-          leave_dirs_open = false,              -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          enabled = false,
+          leave_dirs_open = false,
         },
         group_empty_dirs = false,               -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-        -- in whatever position is specified in window.position
-        -- "open_current",  -- netrw disabled, opening a directory opens within the
-        -- window like netrw would, regardless of window.position
-        -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-        use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
-        -- instead of relying on nvim autocmd events.
+        use_libuv_file_watcher = false,
         window = {
           mappings = {
             ["<bs>"] = "navigate_up",
