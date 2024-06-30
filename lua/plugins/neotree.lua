@@ -17,7 +17,7 @@ return {
       { text = "󰌵", texthl = "DiagnosticSignHint" })
 
     require("neo-tree").setup({
-      close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+      close_if_last_window = false,
       popup_border_style = "rounded",
       enable_git_status = true,
       enable_diagnostics = true,
@@ -31,8 +31,8 @@ return {
           end,
         }
       },
-      open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
-      sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
+      open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
+      sort_case_insensitive = false,
       sort_function = nil,
       default_component_configs = {
         container = {

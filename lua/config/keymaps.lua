@@ -14,17 +14,14 @@ key.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic m
 key.set("n", "<leader>?", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 key.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Increment/decrement
 key.set("n", "+", "<C-a>")
 key.set("n", "-", "<C-x>")
+key.set("n", "<C-a>", "gg<S-v>G")
 
--- Disable continuations
 key.set("n", "<leader>o", "o<Esc>^Da", opts)
 key.set("n", "<leader>O", "O<Esc>^Da", opts)
 
--- Jumplist
 key.set("n", "<C-m>", "<C-i>", opts)
--- Split window
 key.set("n", "ss", ":split<Return>", opts)
 key.set("n", "sv", ":vsplit<Return>", opts)
 key.set("n", "<leader>z", ":ZenMode<Return>", opts)
@@ -35,9 +32,6 @@ key.set("n", "<C-j>", ":TmuxNavigateDown<Return>", opts)
 key.set("n", "<C-k>", ":TmuxNavigateUp<Return>", opts)
 
 key.set("n", "<leader>e", ":Neotree toggle<Return>", opts)
-vim.keymap.set("n", "<leader>cr", function()
-	return ":IncRename " .. vim.fn.expand("<cword>")
-end, { expr = true })
 vim.keymap.set("x", "<leader>re", ":Refactor extract ")
 vim.keymap.set("x", "<leader>rf", ":Refactor extract_to_file ")
 
